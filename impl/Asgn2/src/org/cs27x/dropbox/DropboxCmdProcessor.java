@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import org.cs27x.dropbox.DropboxCmd.OpCode;
 import org.cs27x.filewatcher.FileState;
 import org.cs27x.filewatcher.FileStates;
+import org.cs27x.filewatcher.States;
 
 public class DropboxCmdProcessor implements DropboxTransportListener {
 
