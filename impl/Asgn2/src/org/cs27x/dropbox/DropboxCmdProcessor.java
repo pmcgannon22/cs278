@@ -1,12 +1,10 @@
 package org.cs27x.dropbox;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.cs27x.dropbox.DropboxCmd.OpCode;
 import org.cs27x.filewatcher.FileState;
 import org.cs27x.filewatcher.FileStates;
-import org.cs27x.filewatcher.States;
 
 public class DropboxCmdProcessor implements DropboxTransportListener {
 
@@ -31,8 +29,8 @@ public class DropboxCmdProcessor implements DropboxTransportListener {
 					|| cmd.getOpCode() == OpCode.UPDATE) {
 				FileState state = fileStates_.getOrCreateState(resolved);
 				state.setSize(cmd.getData().length);
-				state.setLastModificationDate(Files
-						.getLastModifiedTime(resolved));
+				state.setLastModificationDate(
+						fileManager_.getLastModifiedTime(resolved));
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);

@@ -13,13 +13,22 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class FileStates {
 
-	private Map<String, FileState> states_ = new ConcurrentHashMap<>();
+	private Map<String, FileState> states_;
+	
+	public FileStates() {
+		 states_ = new ConcurrentHashMap<>();
+	}
+	
+	public FileStates(Map<String, FileState> states) {
+		states_ = states;
+	}
 
 	public FileState getState(Path p){
 		String key = p.toAbsolutePath().toString();
 		return states_.get(key);
 	}
 	
+
 	public FileState getOrCreateState(Path p){
 		String key = p.toAbsolutePath().toString();
 		FileState state = states_.get(key);
@@ -30,9 +39,9 @@ public class FileStates {
 		return state;
 	}
 	
+
 	public FileState insert(Path p) throws IOException {
 		String key = p.toAbsolutePath().toString();
-
 		long size = Files.size(p);
 		FileTime mod = Files.getLastModifiedTime(p);
 		FileState state = new FileState(size, mod);

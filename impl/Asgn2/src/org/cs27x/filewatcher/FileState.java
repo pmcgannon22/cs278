@@ -13,6 +13,37 @@ public class FileState {
 		lastModificationDate_ = lastModificationDate;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime
+				* result
+				+ ((lastModificationDate_ == null) ? 0 : lastModificationDate_
+						.hashCode());
+		result = prime * result + (int) (size_ ^ (size_ >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FileState other = (FileState) obj;
+		if (lastModificationDate_ == null) {
+			if (other.lastModificationDate_ != null)
+				return false;
+		} else if (!lastModificationDate_.equals(other.lastModificationDate_))
+			return false;
+		if (size_ != other.size_)
+			return false;
+		return true;
+	}
+
 	public long getSize() {
 		return size_;
 	}

@@ -98,7 +98,7 @@ public class FileReactor {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void processEvent(WatchEvent<?> event) {
+	public void processEvent(WatchEvent<?> event) {
 		WatchEvent.Kind<?> kind = event.kind();
 		// This key is registered only
 		// for ENTRY_CREATE events,

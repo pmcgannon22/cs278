@@ -28,16 +28,17 @@ public class DefaultFileManagerTest {
 			setupFileSystem();
 		} catch (IOException e) {
 			fail("IOException");
+			e.printStackTrace();
 		}
-		this.dfm = new DefaultFileManager(this.testRoot);
+		dfm = new DefaultFileManager(testRoot);
 	}
 
 	public void setupFileSystem() throws IOException {
-		this.testRoot = FileSystems.getDefault().getPath("test-data");
-		this.testFilePath = FileSystems.getDefault().getPath("test-data",
+		testRoot = FileSystems.getDefault().getPath("test-data");
+		testFilePath = FileSystems.getDefault().getPath("test-data",
 				"test-file.txt");
-		this.testFile = this.testFilePath.toFile();
-		this.testFile.mkdirs();
+		testFile = testFilePath.toFile();
+		testFile.mkdirs();
 		testFile.createNewFile();
 	}
 
