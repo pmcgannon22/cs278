@@ -1,0 +1,24 @@
+<project xmlns="http://maven.apache.org/POM/3.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/3.0.0 http://maven.apache.org/maven-v3_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.cs278.Assignment3</groupId>
+  <artifactId>org.cs27x.filewatcher</artifactId>
+  <name>CS278 Assignment3</name>
+  <version>1</version>
+  <properties>
+	<maven.compiler.source>1.7</maven.compiler.source>
+	<maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+  <build>
+    <sourceDirectory>src/org/cs27x/</sourceDirectory>
+    <resources>
+      <resource>
+		<targetPath>src/org/</targetPath>
+        <directory>libs/</directory>
+		<includes>
+		  <include>**/*.jar</include>
+		</includes>
+	  </resource>
+    </resources>
+  </build>
+</project>
