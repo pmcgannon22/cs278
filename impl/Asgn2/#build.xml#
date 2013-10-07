@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="JavaTestingExercise">
+    <property environment="env"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="../../../../../../../../../../Applications/adt-bundle-mac-x86_64-20130729/eclipse/plugins/org.junit_4.10.0.v4_10_0_v20120426-0900/junit.jar"/>
+        <pathelement location="../../../../../../../../../../Applications/adt-bundle-mac-x86_64-20130729/eclipse/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
+    </path>
+    <path id="JavaTestingExercise.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="libs/hazelcast-all-2.3.1.jar"/>
+        <pathelement location="libs/guava-11.0.2.jar"/>
+        <pathelement location="libs/commons-io-2.4.jar"/>
+        <pathelement location="libs/JavaOCR.jar"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="libs/mockito-all-1.9.0.jar"/>
+    </path>
+    <path id="run.AnExampleUnitTest.bootclasspath">
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <path id="run.DefaultFileManagerTest.bootclasspath">
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <path id="run.Dropbox Client.bootclasspath">
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <path id="run.Dropbox.bootclasspath">
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <path id="run.DropboxCmdProcessorTest.bootclasspath">
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <path id="run.DropboxFileEventHandlerTest.bootclasspath">
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <path id="run.DropboxProtocolTest.bootclasspath">
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <path id="run.FileReactorTest.bootclasspath">
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <path id="run.FileStatesTest.bootclasspath">
+        <fileset dir="${java.home}/lib" includes="*.jar"/>
+        <fileset dir="${java.home}/lib/ext" includes="*.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="JavaTestingExercise.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="AnExampleUnitTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="org.cs27x.dropbox.test.AnExampleUnitTest" todir="${junit.output.dir}"/>
+            <classpath refid="JavaTestingExercise.classpath"/>
+            <bootclasspath>
+                <path refid="run.AnExampleUnitTest.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="DefaultFileManagerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="org.cs27x.dropbox.test.DefaultFileManagerTest" todir="${junit.output.dir}"/>
+            <classpath refid="JavaTestingExercise.classpath"/>
+            <bootclasspath>
+                <path refid="run.DefaultFileManagerTest.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="Dropbox Client">
+        <java classname="org.cs27x.dropbox.Dropbox" failonerror="true" fork="yes">
+            <arg line="&quot;/Users/patrickmcgannon/Google Drive/College/Junior/Fall/CS278/CS278/impl/Asgn2/test-client-dir&quot; 192.168.2.1"/>
+            <classpath refid="JavaTestingExercise.classpath"/>
+            <bootclasspath>
+                <path refid="run.Dropbox Client.bootclasspath"/>
+            </bootclasspath>
+        </java>
+    </target>
+    <target name="Dropbox">
+        <java classname="org.cs27x.dropbox.Dropbox" failonerror="true" fork="yes">
+            <arg line="&quot;/Users/patrickmcgannon/Google Drive/College/Junior/Fall/CS278/CS278/impl/Asgn2/test-server-dir&quot;"/>
+            <classpath refid="JavaTestingExercise.classpath"/>
+            <bootclasspath>
+                <path refid="run.Dropbox.bootclasspath"/>
+            </bootclasspath>
+        </java>
+    </target>
+    <target name="DropboxCmdProcessorTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="org.cs27x.dropbox.test.DropboxCmdProcessorTest" todir="${junit.output.dir}"/>
+            <classpath refid="JavaTestingExercise.classpath"/>
+            <bootclasspath>
+                <path refid="run.DropboxCmdProcessorTest.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="DropboxFileEventHandlerTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="org.cs27x.dropbox.test.DropboxFileEventHandlerTest" todir="${junit.output.dir}"/>
+            <classpath refid="JavaTestingExercise.classpath"/>
+            <bootclasspath>
+                <path refid="run.DropboxFileEventHandlerTest.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="DropboxProtocolTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="org.cs27x.dropbox.test.DropboxProtocolTest" todir="${junit.output.dir}"/>
+            <classpath refid="JavaTestingExercise.classpath"/>
+            <bootclasspath>
+                <path refid="run.DropboxProtocolTest.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="FileReactorTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="org.cs27x.dropbox.test.FileReactorTest" todir="${junit.output.dir}"/>
+            <classpath refid="JavaTestingExercise.classpath"/>
+            <bootclasspath>
+                <path refid="run.FileReactorTest.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="FileStatesTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="org.cs27x.dropbox.test.FileStatesTest" todir="${junit.output.dir}"/>
+            <classpath refid="JavaTestingExercise.classpath"/>
+            <bootclasspath>
+                <path refid="run.FileStatesTest.bootclasspath"/>
+            </bootclasspath>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>

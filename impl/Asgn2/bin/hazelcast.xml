@@ -31,7 +31,7 @@
                 <multicast-port>54327</multicast-port>
             </multicast>
             <tcp-ip enabled="true">
-                <interface>10.0.1.8</interface>
+                <interface>127.0.0.1</interface>
             </tcp-ip>
         </join>
         <interfaces enabled="false">
