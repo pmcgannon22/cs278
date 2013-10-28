@@ -1,6 +1,5 @@
 package org.cs282.SecureComputer;
 
-import java.io.File;
 
 public class SystemInfoCommand extends Command {
 	private String data;
@@ -23,11 +22,11 @@ public class SystemInfoCommand extends Command {
 		return data;
 	}
 	
-	public File invokeLinux() {
+	public String invokeLinux() {
 		return null;
 	}
 	
-	public File getData() {
+	public String getData() {
 		return null;
 	}
 

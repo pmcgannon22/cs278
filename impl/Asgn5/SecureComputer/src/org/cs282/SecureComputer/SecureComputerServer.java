@@ -1,9 +1,12 @@
 package org.cs282.SecureComputer;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,9 +21,7 @@ public class SecureComputerServer {
 	public void startServer() {
 		try {
 			ServerSocket server = new ServerSocket(portNumber);
-			System.out.println("1");
 			Socket client = server.accept();
-			System.out.println("2");
 			handleRequest(client);
 			/*File file = new File("filename"); 
 			FileInputStream stream = new FileInputStream(file);
@@ -38,12 +39,12 @@ public class SecureComputerServer {
 		RegisteredDevice rd = new RegisteredMac(1);
 		rd.addCommand("system-information", new SystemInfoCommand());
 		rd.addCommand("screenshot", new ScreenshotCommand());
-		command = "screenshot";
+		command = "screenshot"; //more commands can be added. This one is the base command so I just set it here and I'm tired. 
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			//command = in.readLine();
 			System.out.println("Cmd: " + command);
-			sendFile(rd.runCommand(command), client);
+			sendFile(rd.runCommand(command, true), client);
 		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -56,7 +57,6 @@ public class SecureComputerServer {
 		try {
 			
 			out = new PrintWriter(sock.getOutputStream(), true);
-			//BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 			out.println(s);
 			
 		} catch (IOException e) {
@@ -66,6 +66,22 @@ public class SecureComputerServer {
 	}
 	
 	public void sendFile(File img, Socket sock) {
+		int bytecount = 2048;
+		byte[] buf = new byte[bytecount];
+		try {
+			OutputStream out = sock.getOutputStream();
+			BufferedOutputStream bout = new BufferedOutputStream(out, bytecount);
+			FileInputStream in = new FileInputStream(img);
+			
+			int i = 0;
+			while((i = in.read(buf, 0, bytecount)) != -1) {
+				bout.write(buf, 0, i);
+				bout.flush();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }

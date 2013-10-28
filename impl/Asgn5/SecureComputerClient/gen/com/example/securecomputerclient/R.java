@@ -24,8 +24,12 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080001;
-        public static final int text=0x7f080000;
+        public static final int action_settings=0x7f080005;
+        public static final int enter_port=0x7f080002;
+        public static final int enter_url=0x7f080001;
+        public static final int get_screenshot=0x7f080003;
+        public static final int screenshot_field=0x7f080004;
+        public static final int url_text=0x7f080000;
     }
     public static final class layout {
         public static final int activity_sc=0x7f030000;

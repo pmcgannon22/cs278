@@ -1,5 +1,6 @@
 package org.cs282.SecureComputer;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,12 @@ public abstract class Command {
 	
 	protected Map<String, String> data_ = new HashMap<String, String>();
 	
-	public abstract File invoke(Device d);
+	public File invoke(Device d, boolean file) {
+		return null;
+	}
+	public String invoke(Device d) {
+		return null;
+	}
 	
 	public void putData(String key, String data) {
 		data_.put(key, data);

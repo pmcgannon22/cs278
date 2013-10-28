@@ -26,11 +26,18 @@ public abstract class RegisteredDevice {
 		commands_.put(name, cmd);
 	}
 	
-	public File runCommand(String cmd) {
+	public String runCommand(String cmd) {
 		if(hasCapability(cmd)) {
 			return commands_.get(cmd).invoke(Device.MAC);	
 		}
 		return "";
+	}
+	
+	public File runCommand(String cmd, boolean file) {
+		if(hasCapability(cmd)) {
+			return commands_.get(cmd).invoke(Device.MAC, file);
+		}
+		return null;
 	}
 	
 	public void markLost() {
