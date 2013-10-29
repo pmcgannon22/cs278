@@ -13,9 +13,13 @@ import java.net.Socket;
 
 public class SecureComputerServer {
 	private final int portNumber;
+	private RegisteredDevice rd;
 	
 	public SecureComputerServer(int port) {
 		portNumber = port;
+		rd = new RegisteredMac(1);
+		rd.addCommand("system-information", new SystemInfoCommand());
+		rd.addCommand("screenshot", new ScreenshotCommand());
 	}
 	
 	public void startServer() {
@@ -36,13 +40,10 @@ public class SecureComputerServer {
 	
 	public void handleRequest(Socket client) {
 		String command;
-		RegisteredDevice rd = new RegisteredMac(1);
-		rd.addCommand("system-information", new SystemInfoCommand());
-		rd.addCommand("screenshot", new ScreenshotCommand());
-		command = "screenshot"; //more commands can be added. This one is the base command so I just set it here and I'm tired. 
+
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			//command = in.readLine();
+			command = in.readLine();
 			System.out.println("Cmd: " + command);
 			sendFile(rd.runCommand(command, true), client);
 		
